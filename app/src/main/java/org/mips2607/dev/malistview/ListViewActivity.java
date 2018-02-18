@@ -4,7 +4,10 @@ import android.app.ListActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListViewActivity extends ListActivity {
 
@@ -20,11 +23,16 @@ public class ListViewActivity extends ListActivity {
         // ActionBar actionBar = getSupportActionBar();
         // actionBar.setDisplayHomeAsUpEnabled(true);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,
-                kyuList);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, kyuList);
         setListAdapter(adapter);
 
+    }
 
+    // Traitement du cli sur un éléments de la liste
+    public void onListItemClick(ListView listView, View view, int position, long id) {
+        ListView myListView = getListView();
+        Object item = myListView.getAdapter().getItem(position);
+        Toast.makeText(getApplicationContext(), "Item Clicked: " + item + " \nPosition: " + id, Toast.LENGTH_SHORT).show();
     }
 
 
